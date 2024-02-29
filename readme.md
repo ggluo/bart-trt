@@ -1,6 +1,6 @@
 # Bart With TensorRT
 
-This repository shows how inference deep learning models with BART using TensorRT as backend.
+This repository shows how to inference deep learning models with BART using TensorRT as backend.
 
 ## Prerequisites
 
