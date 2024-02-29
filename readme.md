@@ -1,7 +1,6 @@
-
 # Bart With TensorRT
 
-This script performs deep learning models with bart using TensorRT as backend.
+This repository shows how inference deep learning models with BART using TensorRT as backend.
 
 ## Prerequisites
 
