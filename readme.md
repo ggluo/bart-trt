@@ -18,7 +18,7 @@ To run inference using all models in the repository, execute the provided shell 
 
 Before run this script,
 
-- Make sure BART is compile correctly
+- Make sure BART is compiled correctly
 - Make [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-tar) is correctly installed.
 - Make sure env varibles are set up correctly
 
