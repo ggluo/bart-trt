@@ -1,3 +1,8 @@
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['XLA_CPP_MIN_LOG_LEVEL'] = '3'
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -28,29 +33,33 @@ class GaussianBlur(nn.Module):
         x_1 = F.conv2d(x[:, 1, ...], self.kernel, padding=self.padding, groups=1)
         return torch.stack([x_0, x_1], dim=1).permute(2, 3, 1, 0)
 
-def main(path, blur, onnx):
+def main(cfl, img_path, onnx_path):
 
-    # Create a random input image
-    input_tensor = utils.readcfl(path)
+    input_tensor = utils.readcfl(cfl)
     input_tensor = torch.tensor(utils.cplx2float(input_tensor))[..., None]
 
     # Create a Gaussian blur filter with kernel size 5 and sigma 1.5
     gaussian_blur = GaussianBlur(kernel_size=5, sigma=1.5)
-
-    # Apply the Gaussian blur filter to the input image
     blurred_image = gaussian_blur(input_tensor)
 
     plt.imshow(abs(utils.float2cplx(blurred_image[..., 0])), cmap="gray")
-    plt.savefig(blur)
+    plt.savefig(img_path)
 
 
     # Export the model to ONNX
-    torch.onnx.export(gaussian_blur, input_tensor, onnx, verbose=True)
+    torch.onnx.export(gaussian_blur, input_tensor, onnx_path, verbose=True)
 
     print("Input image shape:", input_tensor.shape)
     print("Blurred image shape:", blurred_image.shape)
 
 
-# Example usage
 if __name__ == "__main__":
+    # parse command line arguments
+    if len(sys.argv) != 4:
+        print("Usage: python gaussian_blur_jax.py <cfl> <save_img_path> <onnx_path>")
+        sys.exit(1)
+
+    cfl = sys.argv[1]
+    img_path = sys.argv[2]
+    onnx_path = sys.argv[3]
     main(sys.argv[1], sys.argv[2], sys.argv[3])
