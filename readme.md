@@ -1,6 +1,6 @@
 # Run TF/PyTorch/JAX models for MRI reconstruction with BART and TensorRT
 
-This repository shows how to use bart to inference various deep learning models that are implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend. Models are converted to the ONNX format and then converting them to TensorRT engines using the bart trt command and then engines will be executed with bart trt too.
+This repository shows how to use bart to inference various deep learning models that are implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend. Models are converted to the ONNX format and then converting them to TensorRT engines using the `bart trt` command and then engines will be executed with bart trt too.
 
 ## Prerequisites
 
