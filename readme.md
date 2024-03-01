@@ -1,6 +1,6 @@
 # Use Bart To Run TF/PyTorch/JAX With TensorRT
 
-This repository shows how to use bart to inference various deep learning models that are implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend.
+This repository shows how to use bart to inference various deep learning models that are implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend. Models from different frameworks (JAX, TensorFlow, PyTorch) are converted to the ONNX format and then converting them to TensorRT engines using the bart trt command and then engines will be executed with bart trt too.
 
 ## Prerequisites
 
