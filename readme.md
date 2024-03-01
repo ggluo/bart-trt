@@ -1,6 +1,6 @@
 # Use Bart To Run TF/PyTorch/JAX With TensorRT
 
-This repository shows how to use bart to inference deep learning models that are  implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend.
+This repository shows how to use bart to inference various deep learning models that are implemented in different frameworks (PyTorch, TensorFlow, JAX) using TensorRT as backend.
 
 ## Prerequisites
 
@@ -16,9 +16,16 @@ This repository shows how to use bart to inference deep learning models that are
 
 To run inference using all models in the repository, execute the provided shell script `run_all.sh`. This script runs inference for PyTorch, TensorFlow, and JAX models, and converts the output to images using the `bart toimg` command.
 
-```bash
-bash run_all.sh
-```
+Before run this script,
+
+- Make sure BART is compile correctly
+- Make [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-tar) is correctly installed.
+- Make sure env varibles are set up correctly
+
+   ```shell 
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/TensorRT/lib
+   ```
+- Ensure that input files are correctly specified and available in the specified paths.
 
 ### Script Details
 
@@ -40,9 +47,4 @@ The shell script `run_all.sh` follows these steps:
    - Converts the ONNX model to TensorRT engine and execute it (`bart trt`).
    - Converts the output to images (`bart toimg`).
 
-
-## Notes
-
-- Ensure that input files are correctly specified and available in the specified paths.
-- Make [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-tar) is correctly installed.
 
