@@ -43,7 +43,7 @@ def main(cfl, img_path, onnx_path):
 
 
     # Export the model to ONNX
-    torch.onnx.export(gaussian_blur, input_tensor, onnx_path, verbose=True)
+    torch.onnx.export(gaussian_blur, input_tensor, onnx_path, verbose=False)
 
     print("Input image shape:", input_tensor.shape)
     print("Blurred image shape:", blurred_image.shape)
